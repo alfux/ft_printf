@@ -6,17 +6,11 @@
 #    By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/04 12:50:53 by afuchs            #+#    #+#              #
-#    Updated: 2022/03/04 19:04:04 by afuchs           ###   ########.fr        #
+#    Updated: 2022/03/04 19:53:58 by afuchs           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC			=	main.c
-
-OBJ			=	$(SRC:%.c=$(PATH_O)%.o)
-
-PATH_LIB	=	libft/
-
-PATH_O	=	objs/
+SRCS		=	main.c
 
 LIBFT		=	ft_atoi.c				\
 				ft_lstmap_bonus.c		\
@@ -62,9 +56,15 @@ LIBFT		=	ft_atoi.c				\
 				ft_lstlast_bonus.c		\
 				ft_strdup.c				\
 
-LIBFTC		=	$(LIBFT:%=$(PATH_LIB)%)
+PATH_LIB	=	libft/
 
-LIBFTO		=	$(LIBFT:%.c=%.o)
+PATH_O		=	objs/
+
+PATH_S		=	srcs/
+
+LIBFTO		=	$(LIBFT:%.c=$(PATH_O)%.o)
+
+SRCSO		=	$(SRCS:%.c=$(PATH_O)%.o)
 
 FLAGS		=	-Wall -Wextra -Werror
 
@@ -72,24 +72,30 @@ OPTIONS		=	-o
 
 NAME		=	libftprintf.a
 
-$(NAME)	:	$(OBJ) $(LIBFTO)
-			@gcc $(FLAGS) $^ $(OPTIONS) $(NAME)
-			@echo Compilation complete.
+$(NAME)			:	$(LIBFTO) $(SRCSO)
+					@gcc $(FLAGS) $^ $(OPTIONS) $(NAME)
+					@echo Compilation complete.
 
-$(PATH_O)%.o	:	$(PATH_LIB)%.c
-					@gcc $(FLAGS) -c $^ -o $^
-					@echo Object files created.
+$(PATH_O)%.o	:	$(PATH_LIB)%.c objs
+					@gcc $(FLAGS) -c $< $(OPTIONS) $@
 
-all		:	$(NAME)
+$(PATH_O)%.o	:	$(PATH_S)%.c objs
+					@gcc $(FLAGS) -c $< $(OPTIONS) $@
 
-clean	:	
-			@rm -rf $(OBJ) $(LIBFTO)
-			@echo Object files removed.
+objs			:
+					@mkdir objs
 
-fclean	:	clean
-			@rm -rf $(NAME)
-			@echo $(NAME) removed.
+all				:	$(NAME)
 
-re		:	fclean all
+clean			:	
+					@rm -rf $(SRCSO) $(LIBFTO)
+					@rm -rf objs
+					@echo Object files removed.
 
-.PHONY	:	all clean fclean re
+fclean			:	clean
+					@rm -rf $(NAME)
+					@echo $(NAME) removed.
+
+re				:	fclean all
+
+.PHONY			:	all clean fclean re

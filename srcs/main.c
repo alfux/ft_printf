@@ -6,10 +6,10 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:05:02 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/04 19:11:44 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/04 19:28:25 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
+#include "../libft/libft.h"
 
 int	main(int argc, char **argv)
 {
