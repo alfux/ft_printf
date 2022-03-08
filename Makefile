@@ -6,12 +6,11 @@
 #    By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/04 12:50:53 by afuchs            #+#    #+#              #
-#    Updated: 2022/03/08 11:42:33 by afuchs           ###   ########.fr        #
+#    Updated: 2022/03/08 16:44:40 by afuchs           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	main.c					\
-				ft_printf.c				\
+SRCS		=	ft_printf.c				\
 
 LIBFT		=	ft_atoi.c				\
 				ft_lstmap_bonus.c		\
@@ -63,7 +62,7 @@ PATH_S		=	srcs/
 
 PATH_O		=	objs/
 
-LIBFTC		=	$(LIBFT:%.c=$(PATH_LIB)%.c)
+LIBFTO		=	$(LIBFT:%.c=$(PATH_LIB)%.o)
 
 SRCSO		=	$(SRCS:%.c=$(PATH_O)%.o)
 
@@ -75,12 +74,12 @@ NAME		=	libftprintf.a
 
 NAME_LIB	=	libft.a
 
-$(NAME)					:	$(PATH_LIB)$(NAME_LIB) $(SRCSO)
-							@gcc $(FLAGS) $^ $(OPTIONS) $(NAME)
+$(NAME)					:	$(LIBFTO) $(SRCSO)
+							@ar -r $(NAME) $^
 							@echo Compilation complete.
 
-$(PATH_LIB)$(NAME_LIB)	:	$(LIBFTC)
-							@(cd $(PATH_LIB) && $(MAKE))
+$(PATH_LIB)%.o			:	$(PATH_LIB)%.c
+							@(cd $(PATH_LIB) && $(MAKE) bonus)
 
 $(PATH_O)%.o			:	$(PATH_S)%.c $(PATH_O)
 							@gcc $(FLAGS) -c $< $(OPTIONS) $@
