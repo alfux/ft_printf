@@ -6,7 +6,7 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 17:39:11 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/08 18:53:08 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/08 20:03:25 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -61,7 +61,8 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 size_t	ft_putnbr_l(int n, int fd, size_t ret);
 size_t	ft_putnbru_l(unsigned int n, int fd, size_t ret);
-size_t	ft_putnbrh_l(char up, char ad, long long n, int fd, size_t ret);
+size_t	ft_putnbrh_l(char up, unsigned int n, int fd, size_t ret);
+size_t	ft_putnbrad_l(unsigned long long n, int fd, size_t ret);
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);

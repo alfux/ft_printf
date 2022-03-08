@@ -6,7 +6,7 @@
 #    By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/04 12:50:53 by afuchs            #+#    #+#              #
-#    Updated: 2022/03/08 18:50:15 by afuchs           ###   ########.fr        #
+#    Updated: 2022/03/08 19:33:40 by afuchs           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ LIBFT		=	ft_atoi.c				\
 				ft_putnbr_l.c			\
 				ft_putnbru_l.c			\
 				ft_putnbrh_l.c			\
+				ft_putnbrad_l.c			\
 				ft_printf.c				\
 
 PATH_LIB	=	libft/

@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_l.c                                      :+:      :+:    :+:   */
+/*   ft_putnbrad_l.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/08 17:54:17 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/08 19:17:11 by afuchs           ###   ########.fr       */
+/*   Created: 2022/03/08 19:24:44 by afuchs            #+#    #+#             */
+/*   Updated: 2022/03/08 20:03:01 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-size_t	ft_putnbr_l(int n, int fd, size_t ret)
+size_t	ft_putnbrad_l(unsigned long long n, int fd, size_t ret)
 {
-	if (n == -2147483648)
-		return (ft_putstr_l("-2147483648", fd));
-	else if (n < 0)
-	{
-		ft_putchar_l('-', fd);
-		return (ft_putnbr_l(n * -1, fd, ret) + 1);
-	}
+	if (n > 15)
+		ret += ft_putnbrad_l(n / 16, fd, ret);
 	else
-	{
-		if (n > 9)
-			ret += ft_putnbr_l(n / 10, fd, ret);
-		return (ft_putchar_l(n % 10 + 48, fd) + ret);
-	}
+		ret += ft_putstr_l("0x", fd);
+	if (n % 16 > 9)
+		return (ft_putchar_l(n % 16 + 87, fd) + ret);
+	else
+		return (ft_putchar_l(n % 16 + 48, fd) + ret);
 }
