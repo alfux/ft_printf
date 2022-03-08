@@ -6,11 +6,12 @@
 #    By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/04 12:50:53 by afuchs            #+#    #+#              #
-#    Updated: 2022/03/04 19:53:58 by afuchs           ###   ########.fr        #
+#    Updated: 2022/03/08 11:42:33 by afuchs           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	main.c
+SRCS		=	main.c					\
+				ft_printf.c				\
 
 LIBFT		=	ft_atoi.c				\
 				ft_lstmap_bonus.c		\
@@ -58,11 +59,11 @@ LIBFT		=	ft_atoi.c				\
 
 PATH_LIB	=	libft/
 
-PATH_O		=	objs/
-
 PATH_S		=	srcs/
 
-LIBFTO		=	$(LIBFT:%.c=$(PATH_O)%.o)
+PATH_O		=	objs/
+
+LIBFTC		=	$(LIBFT:%.c=$(PATH_LIB)%.c)
 
 SRCSO		=	$(SRCS:%.c=$(PATH_O)%.o)
 
@@ -72,30 +73,33 @@ OPTIONS		=	-o
 
 NAME		=	libftprintf.a
 
-$(NAME)			:	$(LIBFTO) $(SRCSO)
-					@gcc $(FLAGS) $^ $(OPTIONS) $(NAME)
-					@echo Compilation complete.
+NAME_LIB	=	libft.a
 
-$(PATH_O)%.o	:	$(PATH_LIB)%.c objs
-					@gcc $(FLAGS) -c $< $(OPTIONS) $@
+$(NAME)					:	$(PATH_LIB)$(NAME_LIB) $(SRCSO)
+							@gcc $(FLAGS) $^ $(OPTIONS) $(NAME)
+							@echo Compilation complete.
 
-$(PATH_O)%.o	:	$(PATH_S)%.c objs
-					@gcc $(FLAGS) -c $< $(OPTIONS) $@
+$(PATH_LIB)$(NAME_LIB)	:	$(LIBFTC)
+							@(cd $(PATH_LIB) && $(MAKE))
 
-objs			:
-					@mkdir objs
+$(PATH_O)%.o			:	$(PATH_S)%.c $(PATH_O)
+							@gcc $(FLAGS) -c $< $(OPTIONS) $@
 
-all				:	$(NAME)
+$(PATH_O)				:
+							@mkdir $(PATH_O)
 
-clean			:	
-					@rm -rf $(SRCSO) $(LIBFTO)
-					@rm -rf objs
-					@echo Object files removed.
+all						:	$(NAME)
 
-fclean			:	clean
-					@rm -rf $(NAME)
-					@echo $(NAME) removed.
+clean					:	
+							@rm -rf $(SRCSO)
+							@rm -rf objs
+							@(cd $(PATH_LIB) && $(MAKE) $@)
 
-re				:	fclean all
+fclean					:	clean
+							@rm -rf $(NAME)
+							@(cd $(PATH_LIB) && $(MAKE) $@)
+							@echo $(NAME) removed.
 
-.PHONY			:	all clean fclean re
+re						:	fclean all
+
+.PHONY					:	all clean fclean re
