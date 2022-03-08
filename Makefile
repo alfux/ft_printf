@@ -6,11 +6,9 @@
 #    By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/04 12:50:53 by afuchs            #+#    #+#              #
-#    Updated: 2022/03/08 16:44:40 by afuchs           ###   ########.fr        #
+#    Updated: 2022/03/08 18:50:15 by afuchs           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-SRCS		=	ft_printf.c				\
 
 LIBFT		=	ft_atoi.c				\
 				ft_lstmap_bonus.c		\
@@ -55,16 +53,16 @@ LIBFT		=	ft_atoi.c				\
 				ft_strchr.c				\
 				ft_lstlast_bonus.c		\
 				ft_strdup.c				\
+				ft_putchar_l.c			\
+				ft_putstr_l.c			\
+				ft_putnbr_l.c			\
+				ft_putnbru_l.c			\
+				ft_putnbrh_l.c			\
+				ft_printf.c				\
 
 PATH_LIB	=	libft/
 
-PATH_S		=	srcs/
-
-PATH_O		=	objs/
-
 LIBFTO		=	$(LIBFT:%.c=$(PATH_LIB)%.o)
-
-SRCSO		=	$(SRCS:%.c=$(PATH_O)%.o)
 
 FLAGS		=	-Wall -Wextra -Werror
 
@@ -74,24 +72,16 @@ NAME		=	libftprintf.a
 
 NAME_LIB	=	libft.a
 
-$(NAME)					:	$(LIBFTO) $(SRCSO)
+$(NAME)					:	$(LIBFTO)
 							@ar -r $(NAME) $^
 							@echo Compilation complete.
 
 $(PATH_LIB)%.o			:	$(PATH_LIB)%.c
 							@(cd $(PATH_LIB) && $(MAKE) bonus)
 
-$(PATH_O)%.o			:	$(PATH_S)%.c $(PATH_O)
-							@gcc $(FLAGS) -c $< $(OPTIONS) $@
-
-$(PATH_O)				:
-							@mkdir $(PATH_O)
-
 all						:	$(NAME)
 
 clean					:	
-							@rm -rf $(SRCSO)
-							@rm -rf objs
 							@(cd $(PATH_LIB) && $(MAKE) $@)
 
 fclean					:	clean
