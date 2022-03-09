@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_l.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/08 17:46:59 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/09 17:37:09 by afuchs           ###   ########.fr       */
+/*   Created: 2022/03/09 11:11:31 by afuchs            #+#    #+#             */
+/*   Updated: 2022/03/09 17:35:10 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "libft/libft.h"
+#include <stdio.h>
+#include <limits.h>
 
-size_t	ft_putstr_l(char *s, int fd)
+int	main(int argc, char **argv)
 {
-	size_t	i;
+	int	test1;
+	int	test2;
 
-	if (s)
-	{
-		i = 0;
-		while (*(s + i))
-			ft_putchar_fd(*(s + i++), fd);
-		return (i);
-	}
-	return (ft_putstr_l("(null)", fd));
-}
-
-size_t	ft_putstr_lo(t_opt opt, char *s, int fd)
-{
-	size_t	i;
-	size_t	len;
-
-	if (!s)
-		return (ft_putstr_lo(opt, "(null)", fd));
-	i = 0;
-	len = ft_strlen(s);
-	if (opt.hyp)
-	{
-		//FINIR
-	}
+	(void)argc;
+	(void)argv;
+	test1 = 6;
+	test2 = 65;
+	printf("Ceci |%20s| est un test\n", NULL);
+	return (0);
 }
