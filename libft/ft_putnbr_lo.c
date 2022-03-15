@@ -6,7 +6,7 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:14:01 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/15 14:51:08 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/15 17:15:24 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -78,7 +78,7 @@ static size_t	ft_per(t_opt opt, int n, int fd, size_t ret)
 	len = ft_siznbr(n, ret);
 	plu = 0;
 	sign = 1;
-	if (opt.plu || opt.spa)
+	if (opt.plu || opt.spa || n < 0)
 		plu = 1;
 	if (ft_maxof(len + plu, opt.pre) < opt.wid)
 		ret += ft_putnchar_l(opt.wid - ft_maxof(len + plu, opt.pre), ' ', fd);

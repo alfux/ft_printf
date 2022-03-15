@@ -6,7 +6,7 @@
 #    By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/04 12:50:53 by afuchs            #+#    #+#              #
-#    Updated: 2022/03/15 15:29:29 by afuchs           ###   ########.fr        #
+#    Updated: 2022/03/15 16:14:34 by afuchs           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,7 @@ fclean					:	clean
 
 re						:	fclean all
 
-bonus					:
+bonus					:	$(NAME)
 							ar -d $(NAME) ft_printf.o
 							ar -r $(NAME) $(PBONUSO)
 

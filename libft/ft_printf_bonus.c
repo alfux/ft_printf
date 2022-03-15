@@ -6,7 +6,7 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 10:52:59 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/15 15:57:41 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/15 17:10:52 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -73,7 +73,7 @@ static size_t	ft_evaluate(const char *str, size_t *i, va_list *argl)
 	if (*(str + *i) == 'c')
 		l = ft_putchar_lo(opt, (char)va_arg(*argl, int), 1);
 	else if (*(str + *i) == 's')
-		l = ft_putstr_lo(opt, (char *)va_arg(*argl, char *), 1);
+		l = ft_putstr_lo(opt, (char *)va_arg(*argl, char *), 1, 0);
 	else if (*(str + *i) == 'p')
 		l = ft_putnbrad_lo(opt, (long long)va_arg(*argl, void *), 1, 0);
 	else if (*(str + *i) == 'i' || *(str + *i) == 'd')

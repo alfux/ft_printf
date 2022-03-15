@@ -6,7 +6,7 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:54:17 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/08 19:17:11 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/15 16:52:54 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -23,7 +23,7 @@ size_t	ft_putnbr_l(int n, int fd, size_t ret)
 	else
 	{
 		if (n > 9)
-			ret += ft_putnbr_l(n / 10, fd, ret);
+			ret = ft_putnbr_l(n / 10, fd, ret);
 		return (ft_putchar_l(n % 10 + 48, fd) + ret);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 17:39:11 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/15 15:01:33 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/15 17:10:16 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -72,7 +72,7 @@ size_t	ft_putchar_lo(t_opt opt, char c, int fd);
 size_t	ft_putnchar_l(size_t n, char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_putstr_l(char *s, int fd);
-size_t	ft_putstr_lo(t_opt opt, char *s, int fd);
+size_t	ft_putstr_lo(t_opt opt, char *s, int fd, size_t ret);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 size_t	ft_putnbr_l(int n, int fd, size_t ret);
