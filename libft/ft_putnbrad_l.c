@@ -6,10 +6,22 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 19:24:44 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/08 20:03:01 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/15 14:58:06 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+
+static size_t	ft_siznbrad(unsigned long long n, size_t ret)
+{
+	if (!n)
+		return (3);
+	while (n)
+	{
+		n /= 16;
+		ret++;
+	}
+	return (ret + 2);
+}
 
 size_t	ft_putnbrad_l(unsigned long long n, int fd, size_t ret)
 {
@@ -21,4 +33,22 @@ size_t	ft_putnbrad_l(unsigned long long n, int fd, size_t ret)
 		return (ft_putchar_l(n % 16 + 87, fd) + ret);
 	else
 		return (ft_putchar_l(n % 16 + 48, fd) + ret);
+}
+
+size_t	ft_putnbrad_lo(t_opt opt, unsigned long long n, int fd, size_t ret)
+{
+	if (opt.hyp)
+	{
+		ret = ft_putnbrad_l(n, fd, ret);
+		while (ret++ < opt.wid)
+			ft_putchar_fd(' ', fd);
+	}
+	else
+	{
+		ret = ft_siznbrad(n, ret);
+		while (ret++ < opt.wid)
+			ft_putchar_fd(' ', fd);
+		ft_putnbrad_l(n, fd, ret);
+	}
+	return (ret - 1);
 }

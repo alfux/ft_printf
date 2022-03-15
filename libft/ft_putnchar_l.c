@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbrh_l.c                                     :+:      :+:    :+:   */
+/*   ft_putnchar_l.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/08 18:14:01 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/15 13:30:24 by afuchs           ###   ########.fr       */
+/*   Created: 2022/03/15 13:12:33 by afuchs            #+#    #+#             */
+/*   Updated: 2022/03/15 13:14:34 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-size_t	ft_putnbrh_l(char up, unsigned int n, int fd, size_t ret)
+size_t	ft_putnchar_l(size_t n, char c, int fd)
 {
-	if (n > 15)
-		ret += ft_putnbrh_l(up, n / 16, fd, ret);
-	if (n % 16 > 9 && up)
-		return (ft_putchar_l(n % 16 + 55, fd) + ret);
-	else if (n % 16 > 9)
-		return (ft_putchar_l(n % 16 + 87, fd) + ret);
-	else
-		return (ft_putchar_l(n % 16 + 48, fd) + ret);
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+		i += ft_putchar_l(c, fd);
+	return (i);
 }

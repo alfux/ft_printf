@@ -6,7 +6,7 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:46:59 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/09 17:37:09 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/15 14:56:48 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -33,9 +33,23 @@ size_t	ft_putstr_lo(t_opt opt, char *s, int fd)
 	if (!s)
 		return (ft_putstr_lo(opt, "(null)", fd));
 	i = 0;
-	len = ft_strlen(s);
+	if (opt.per)
+		len = opt.pre;
+	else
+		len = ft_strlen(s);
 	if (opt.hyp)
 	{
-		//FINIR
+		while (*(s + i) && i < len)
+			ft_putchar_fd(*(s + i++), fd);
+		while (i++ < opt.wid)
+			ft_putchar_fd(' ', fd);
 	}
+	else
+	{
+		while (i++ + len < opt.wid)
+			ft_putchar_fd(' ', fd);
+		while (*(s + i - 1) && i - 1 < len)
+			ft_putchar_fd(*(s + i++), fd);
+	}
+	return (i - 1);
 }
