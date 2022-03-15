@@ -6,7 +6,7 @@
 #    By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/04 12:50:53 by afuchs            #+#    #+#              #
-#    Updated: 2022/03/15 14:39:50 by afuchs           ###   ########.fr        #
+#    Updated: 2022/03/15 15:29:29 by afuchs           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,9 +67,13 @@ LIBFT		=	ft_atoi.c				\
 				ft_putnbru_lo.c			\
 				ft_minmax.c				\
 
+PBONUS		=	ft_printf_bonus.c
+
 PATH_LIB	=	libft/
 
 LIBFTO		=	$(LIBFT:%.c=$(PATH_LIB)%.o)
+
+PBONUSO		=	$(PBONUS:%.c=$(PATH_LIB)%.o)
 
 FLAGS		=	-Wall -Wextra -Werror
 
@@ -98,4 +102,8 @@ fclean					:	clean
 
 re						:	fclean all
 
-.PHONY					:	all clean fclean re
+bonus					:
+							ar -d $(NAME) ft_printf.o
+							ar -r $(NAME) $(PBONUSO)
+
+.PHONY					:	all clean fclean re bonus

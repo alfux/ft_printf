@@ -6,7 +6,7 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 10:52:59 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/15 15:06:16 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/15 15:57:41 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -22,53 +22,54 @@ static t_opt	ft_init_opt(void )
 {
 	t_opt	opt;
 
-	opt.hyphen = 0;
-	opt.zero = 0;
-	opt.period = 0;
-	opt.pound = 0;
-	opt.space = 0;
-	opt.plus = 0;
-	opt.width = 0;
-	opt.precision = 0;
+	opt.hyp = 0;
+	opt.zer = 0;
+	opt.per = 0;
+	opt.pou = 0;
+	opt.spa = 0;
+	opt.plu = 0;
+	opt.wid = 0;
+	opt.pre = 0;
 	return (opt);
 }
 
-static size_t	ft_get_opt(char *str, size_t *i)
+static t_opt	ft_get_opt(const char *str, size_t *i, t_opt options)
 {
-	t_opt	options;
-
-	options = ft_init_opt();
-	while (ft_isopt(str + *i))
+	while (ft_isopt(*(str + *i)))
 	{
-		if (str + *i == '-')
+		if (*(str + *i) == '-')
 			options.hyp = 1;
-		else if (str + *i == '0')
+		else if (*(str + *i) == '0')
 			options.zer = 1;
-		else if (str + *i == '#')
+		else if (*(str + *i) == '#')
 			options.pou = 1;
-		else if (str + *i == ' ')
+		else if (*(str + *i) == ' ')
 			options.spa = 1;
 		else
 			options.plu = 1;
 		(*i)++;
 	}
 	options.wid = ft_atoi(str + *i);
-	while (ft_isdigit(str + *i))
+	while (ft_isdigit(*(str + *i)))
 		(*i)++;
-	if (str + *i == '.')
+	if (*(str + *i) == '.')
+	{
+		options.per = 1;
 		options.pre = ft_atoi(str + ++(*i));
-	while (ft_isdigit(str + *i))
+	}
+	while (ft_isdigit(*(str + *i)))
 		(*i)++;
 	return (options);
 }
 
-static size_t	ft_evaluate(char *str, size_t *i, va_list *argl)
+static size_t	ft_evaluate(const char *str, size_t *i, va_list *argl)
 {
 	size_t	l;
 	t_opt	opt;
 
 	l = 0;
-	opt = ft_get_opt(str, i);
+	opt = ft_init_opt();
+	opt = ft_get_opt(str, i, opt);
 	if (*(str + *i) == 'c')
 		l = ft_putchar_lo(opt, (char)va_arg(*argl, int), 1);
 	else if (*(str + *i) == 's')
@@ -102,7 +103,10 @@ int	ft_printf(const char *str, ...)
 	while (*(str + i))
 	{
 		if (*(str + i++) == '%')
+		{
 			len += ft_evaluate(str, &i, &argl);
+			i++;
+		}
 		else
 		{
 			ft_putchar_fd(*(str + i - 1), 1);

@@ -6,11 +6,11 @@
 #    By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/01 14:07:34 by afuchs            #+#    #+#              #
-#    Updated: 2022/03/15 14:39:29 by afuchs           ###   ########.fr        #
+#    Updated: 2022/03/15 15:18:32 by afuchs           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		=	ft_strdup.c ft_atoi.c ft_striteri.c ft_bzero.c ft_strjoin.c ft_calloc.c ft_strlcat.c ft_isalnum.c ft_memchr.c ft_strlcpy.c ft_isalpha.c ft_memcmp.c ft_strlen.c ft_isascii.c ft_memcpy.c ft_strmapi.c ft_isdigit.c ft_memmove.c ft_strncmp.c ft_isprint.c ft_memset.c ft_strnstr.c ft_itoa.c ft_putchar_fd.c ft_strrchr.c ft_putendl_fd.c ft_strtrim.c ft_putnbr_fd.c ft_substr.c ft_putstr_fd.c ft_tolower.c ft_split.c ft_toupper.c ft_strchr.c ft_putchar_l.c ft_putstr_l.c ft_putnbr_l.c ft_putnbru_l.c ft_putnbrh_l.c ft_putnbrad_l.c ft_printf.c ft_putnchar_l.c ft_putnbrx_lo.c ft_putnbrux_lo.c ft_putnbr_lo.c ft_putnbru_lo.c ft_minmax.c
+SRC		=	ft_strdup.c ft_atoi.c ft_striteri.c ft_bzero.c ft_strjoin.c ft_calloc.c ft_strlcat.c ft_isalnum.c ft_memchr.c ft_strlcpy.c ft_isalpha.c ft_memcmp.c ft_strlen.c ft_isascii.c ft_memcpy.c ft_strmapi.c ft_isdigit.c ft_memmove.c ft_strncmp.c ft_isprint.c ft_memset.c ft_strnstr.c ft_itoa.c ft_putchar_fd.c ft_strrchr.c ft_putendl_fd.c ft_strtrim.c ft_putnbr_fd.c ft_substr.c ft_putstr_fd.c ft_tolower.c ft_split.c ft_toupper.c ft_strchr.c ft_putchar_l.c ft_putstr_l.c ft_putnbr_l.c ft_putnbru_l.c ft_putnbrh_l.c ft_putnbrad_l.c ft_printf.c ft_putnchar_l.c ft_putnbrx_lo.c ft_putnbrux_lo.c ft_putnbr_lo.c ft_putnbru_lo.c ft_minmax.c ft_printf_bonus.c
 
 OBJ 	=	$(SRC:.c=.o)
 
