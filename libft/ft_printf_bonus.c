@@ -6,7 +6,7 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 10:52:59 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/15 17:10:52 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/16 17:55:02 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -65,27 +65,27 @@ static t_opt	ft_get_opt(const char *str, size_t *i, t_opt options)
 static size_t	ft_evaluate(const char *str, size_t *i, va_list *argl)
 {
 	size_t	l;
-	t_opt	opt;
+	t_opt	op;
 
 	l = 0;
-	opt = ft_init_opt();
-	opt = ft_get_opt(str, i, opt);
+	op = ft_init_opt();
+	op = ft_get_opt(str, i, op);
 	if (*(str + *i) == 'c')
-		l = ft_putchar_lo(opt, (char)va_arg(*argl, int), 1);
+		l = ft_putchar_lo(op, (char)va_arg(*argl, int), 1);
 	else if (*(str + *i) == 's')
-		l = ft_putstr_lo(opt, (char *)va_arg(*argl, char *), 1, 0);
+		l = ft_putstr_lo(op, (char *)va_arg(*argl, char *), 1, 0);
 	else if (*(str + *i) == 'p')
-		l = ft_putnbrad_lo(opt, (long long)va_arg(*argl, void *), 1, 0);
+		l = ft_putnbrad_lo(op, (long long)va_arg(*argl, void *), 1, 0);
 	else if (*(str + *i) == 'i' || *(str + *i) == 'd')
-		l = ft_putnbr_lo(opt, (int)va_arg(*argl, int), 1, 0);
+		l = ft_putnbr_lo(op, (int)va_arg(*argl, int), 1, 0);
 	else if (*(str + *i) == 'u')
-		l = ft_putnbru_lo(opt, (unsigned int)va_arg(*argl, unsigned int), 1, 0);
+		l = ft_putnbru_lo(op, (unsigned int)va_arg(*argl, unsigned int), 1, 0);
 	else if (*(str + *i) == 'x')
-		l = ft_putnbrx_lo(opt, (unsigned int)va_arg(*argl, unsigned int), 1, 0);
+		l = ft_putnbrx_lo(op, (unsigned int)va_arg(*argl, unsigned int), 1, 0);
 	else if (*(str + *i) == 'X')
-		l = ft_putnbrX_lo(opt, (unsigned int)va_arg(*argl, unsigned int), 1, 0);
+		l = ft_putnbrux_lo(op, (unsigned int)va_arg(*argl, unsigned int), 1, 0);
 	else if (*(str + *i) == '%')
-		l = ft_putchar_lo(opt, *(str + *i), 1);
+		l = ft_putchar_lo(op, *(str + *i), 1);
 	else
 		l = ft_putstr_l("{Flag does not exist}", 1);
 	return (l);

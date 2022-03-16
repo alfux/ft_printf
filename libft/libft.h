@@ -6,7 +6,7 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 17:39:11 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/15 17:10:16 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/16 17:53:17 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -81,7 +81,7 @@ size_t	ft_putnbru_l(unsigned int n, int fd, size_t ret);
 size_t	ft_putnbru_lo(t_opt opt, unsigned int n, int fd, size_t ret);
 size_t	ft_putnbrh_l(char up, unsigned int n, int fd, size_t ret);
 size_t	ft_putnbrx_lo(t_opt opt, unsigned int n, int fd, size_t ret);
-size_t	ft_putnbrX_lo(t_opt opt, unsigned int n, int fd, size_t ret);
+size_t	ft_putnbrux_lo(t_opt opt, unsigned int n, int fd, size_t ret);
 size_t	ft_putnbrad_l(unsigned long long n, int fd, size_t ret);
 size_t	ft_putnbrad_lo(t_opt opt, unsigned long long n, int fd, size_t ret);
 t_list	*ft_lstnew(void *content);

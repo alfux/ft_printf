@@ -6,13 +6,15 @@
 /*   By: afuchs <afuchs@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:14:01 by afuchs            #+#    #+#             */
-/*   Updated: 2022/03/15 14:54:14 by afuchs           ###   ########.fr       */
+/*   Updated: 2022/03/16 17:40:27 by afuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-static size_t	ft_siznbr(unsigned int n, size_t ret)
+static size_t	ft_siznbr(t_opt opt, unsigned int n, size_t ret)
 {
+	if (!n && opt.per && !opt.pre)
+		return (0);
 	if (!n)
 		return (1);
 	while (n)
@@ -27,14 +29,15 @@ static size_t	ft_hyp(t_opt opt, unsigned int n, int fd, size_t ret)
 {
 	size_t	len;
 
-	len = ft_siznbr(n, ret);
+	len = ft_siznbr(opt, n, ret);
 	if (opt.plu)
 		ret += ft_putchar_l('+', fd);
 	else if (opt.spa)
 		ret += ft_putchar_l(' ', fd);
 	if (opt.per && len < opt.pre)
 		ret += ft_putnchar_l(opt.pre - len, '0', fd);
-	ret = ft_putnbru_l(n, fd, ret);
+	if (n || !opt.per || opt.pre)
+		ret = ft_putnbru_l(n, fd, ret);
 	if (ret < opt.wid)
 		ret += ft_putnchar_l(opt.wid - ret, ' ', fd);
 	return (ret);
@@ -44,7 +47,7 @@ static size_t	ft_zer(t_opt opt, unsigned int n, int fd, size_t ret)
 {
 	size_t	len;
 
-	len = ft_siznbr(n, ret);
+	len = ft_siznbr(opt, n, ret);
 	if (opt.plu)
 		ret += ft_putchar_l('+', fd);
 	else if (opt.spa)
@@ -60,19 +63,20 @@ static size_t	ft_per(t_opt opt, unsigned int n, int fd, size_t ret)
 	size_t	len;
 	size_t	plu;
 
-	len = ft_siznbr(n, ret);
+	len = ft_siznbr(opt, n, ret);
 	plu = 0;
 	if (opt.plu || opt.spa)
 		plu = 1;
-	if (ft_maxof(len + plu, opt.pre) < opt.wid)
-		ret += ft_putnchar_l(opt.wid - ft_maxof(len + plu, opt.pre), ' ', fd);
+	if (ft_maxof(len, opt.pre) + plu < opt.wid)
+		ret += ft_putnchar_l(opt.wid - ft_maxof(len, opt.pre) - plu, ' ', fd);
 	if (opt.plu)
 		ret += ft_putchar_l('+', fd);
 	else if (opt.spa)
 		ret += ft_putchar_l(' ', fd);
 	if (opt.per && len < opt.pre)
 		ret += ft_putnchar_l(opt.pre - len, '0', fd);
-	ret = ft_putnbru_l(n, fd, ret);
+	if (n || !opt.per || opt.pre)
+		ret = ft_putnbru_l(n, fd, ret);
 	return (ret);
 }
 
